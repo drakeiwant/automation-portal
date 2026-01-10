@@ -1,7 +1,7 @@
 // Import React to resolve React namespace in TypeScript
 import React from 'react';
 
-export type Tab = 'home' | 'tools' | 'reservation' | 'analytics';
+export type Tab = "home" | "reservation" | "quote" | "si";
 
 export interface AutomationTool {
   id: string;
