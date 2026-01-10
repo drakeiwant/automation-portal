@@ -1,6 +1,6 @@
 import React from "react";
 import { Tab } from "../types";
-import { Home, CalendarDays } from "lucide-react";
+import { Home, CalendarDays, ClipboardList, Package } from "lucide-react";
 
 interface NavbarProps {
   activeTab: Tab;
@@ -11,12 +11,14 @@ const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   const navItems: { id: Tab; label: string; icon: any }[] = [
     { id: "home", label: "Home", icon: Home },
     { id: "reservation", label: "Reservation", icon: CalendarDays },
+    { id: "quote", label: "견적서 비교", icon: ClipboardList },
+    { id: "si", label: "S&I 소모품", icon: Package },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4">
       <div className="glass px-5 py-2 rounded-full flex items-center gap-3 shadow-2xl">
-        {/* 로고/타이틀 */}
+        {/* 타이틀 */}
         <button
           onClick={() => setActiveTab("home")}
           className="flex items-center gap-2 px-2 py-1 rounded-full hover:bg-white/10 transition-colors"
@@ -25,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
             <div className="w-3.5 h-3.5 bg-black rounded-full" />
           </div>
           <span className="font-semibold tracking-tight hidden sm:block">
-            업무 자동화 포털
+            업무지원팀 AI 고도화 TOOL
           </span>
         </button>
 
