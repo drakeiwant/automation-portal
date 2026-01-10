@@ -1,0 +1,6 @@
+
+{
+  "name": "Nexus Automation Portal",
+  "description": "A high-end, Apple-inspired business automation dashboard featuring 3D particles and streamlined reservation workflows.",
+  "requestFramePermissions": ["camera", "microphone"]
+}
