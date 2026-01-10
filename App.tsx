@@ -3,17 +3,16 @@ import { Tab } from "./types";
 import Navbar from "./components/Navbar";
 import SplineBackground from "./components/SplineBackground";
 import ReservationView from "./components/ReservationView";
-import { Sparkles, ArrowRight } from "lucide-react";
+import PlaceholderView from "./components/PlaceholderView";
+import { ArrowRight } from "lucide-react";
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>("home");
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    // 탭 바꾸면 페이지 상단으로 올라가게(UX)
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white/20">
@@ -24,27 +23,18 @@ const App: React.FC = () => {
         {activeTab === "home" && (
           <section className="pt-28 pb-20 px-5 animate-fade-in">
             <div className="max-w-6xl mx-auto">
-              <div
-                className={
-                  "glass rounded-[2.8rem] overflow-hidden shadow-2xl " +
-                  (scrolled ? "" : "")
-                }
-              >
+              <div className="glass rounded-[2.8rem] overflow-hidden shadow-2xl">
                 <div className="px-8 md:px-12 py-12 md:py-16">
-                  <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm text-white/80">
-                    <Sparkles size={16} />
-                    AI 기반 업무 자동화 포털
-                  </div>
-
-                  <h1 className="mt-6 text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.0]">
-                    한 곳에서,
+                  <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.0]">
+                    업무지원팀을 위한
                     <br />
-                    모든 자동화를 실행.
+                    AI 고도화 도구 모음
                   </h1>
 
                   <p className="text-white/60 mt-6 text-lg md:text-xl leading-relaxed max-w-2xl">
-                    반복 업무는 자동화하고, 운영 데이터는 인사이트로 바꾸는 포털입니다.
-                    상단 탭에서 원하는 도구를 선택하세요.
+                    상단 탭에서 필요한 업무 도구를 선택하세요.
+                    <br />
+                    (각 탭은 앞으로 계속 추가/확장됩니다)
                   </p>
 
                   <div className="mt-10 flex flex-wrap gap-3">
@@ -56,37 +46,44 @@ const App: React.FC = () => {
                     </button>
 
                     <button
-                      onClick={() => window.scrollTo({ top: 900, behavior: "smooth" })}
+                      onClick={() => setActiveTab("quote")}
                       className="btn-ghost"
                     >
-                      포털 소개 보기
+                      견적서 비교(준비중)
+                    </button>
+
+                    <button
+                      onClick={() => setActiveTab("si")}
+                      className="btn-ghost"
+                    >
+                      S&I 소모품(준비중)
                     </button>
                   </div>
                 </div>
 
-                <div className="px-8 md:px-12 py-10 border-t border-white/10 apple-gradient">
+                <div className="px-8 md:px-12 py-10 border-t border-white/10">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="glass rounded-3xl p-6">
-                      <div className="text-white/40 text-sm">목표</div>
-                      <div className="mt-2 text-xl font-semibold">업무 고도화</div>
+                      <div className="text-white/40 text-sm">Reservation</div>
+                      <div className="mt-2 text-xl font-semibold">회의실 예약률</div>
                       <p className="text-white/55 mt-2 text-sm leading-relaxed">
-                        수작업/비부가 업무를 줄이고 분석·의사결정에 집중합니다.
+                        월/전체 평균, 추이, 인사이트 자동 생성
                       </p>
                     </div>
 
                     <div className="glass rounded-3xl p-6">
-                      <div className="text-white/40 text-sm">방식</div>
-                      <div className="mt-2 text-xl font-semibold">툴 허브화</div>
+                      <div className="text-white/40 text-sm">견적서 비교</div>
+                      <div className="mt-2 text-xl font-semibold">단가/조건 비교</div>
                       <p className="text-white/55 mt-2 text-sm leading-relaxed">
-                        여러 자동화 사이트를 하나의 포털에서 접근하도록 통합합니다.
+                        여러 견적서를 자동으로 정리/비교(예정)
                       </p>
                     </div>
 
                     <div className="glass rounded-3xl p-6">
-                      <div className="text-white/40 text-sm">확장</div>
-                      <div className="mt-2 text-xl font-semibold">계속 추가</div>
+                      <div className="text-white/40 text-sm">S&I 소모품</div>
+                      <div className="mt-2 text-xl font-semibold">재고/발주 관리</div>
                       <p className="text-white/55 mt-2 text-sm leading-relaxed">
-                        출장비/비품/회의록 등 다음 자동화도 같은 방식으로 붙이면 됩니다.
+                        자주 쓰는 소모품 관리 자동화(예정)
                       </p>
                     </div>
                   </div>
@@ -94,16 +91,25 @@ const App: React.FC = () => {
               </div>
 
               <footer className="text-white/25 text-xs mt-10 px-2">
-                © {new Date().getFullYear()} 업무 자동화 포털
+                © {new Date().getFullYear()} 업무지원팀 AI 고도화 TOOL
               </footer>
             </div>
           </section>
         )}
 
         {activeTab === "reservation" && <ReservationView />}
+
+        {activeTab === "quote" && (
+          <PlaceholderView title="견적서 비교" subtitle="견적서 업로드 → 항목/단가/조건 자동 비교 (연결 예정)" />
+        )}
+
+        {activeTab === "si" && (
+          <PlaceholderView title="S&I 소모품" subtitle="소모품 현황/발주/정산 자동화 (연결 예정)" />
+        )}
       </main>
     </div>
   );
 };
 
 export default App;
+
