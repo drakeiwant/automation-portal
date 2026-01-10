@@ -4,14 +4,14 @@ const SplineBackground: React.FC = () => {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
       <iframe
-        src="https://my.spline.design/particles-VClcIxkq6EmpvjxzG5d3Qn4v/"
+        src="https://my.spline.design/chips-L9fj0sZuk9NbQc94XzJoABmQ/"
         frameBorder="0"
         width="100%"
         height="100%"
-        className="w-full h-full opacity-70"
+        className="w-full h-full opacity-80"
       />
-      {/* 어두운 그라데이션 오버레이(텍스트 가독성) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black pointer-events-none" />
+      {/* 가독성용 오버레이 (다크 톤 추천) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/55 to-black pointer-events-none" />
     </div>
   );
 };
